@@ -19,11 +19,6 @@ ds <- read.table("./data/household_power_consumption.txt", header = TRUE, sep = 
 # subset dataset by date
 sample <- ds[ds$Date == "1/2/2007" | ds$Date == "2/2/2007", ]
 
-#this is trick and sucks, but I didn't find a way to do as.Date with the original date without get NA
-sample$Date <- gsub("1/2/2007", "2007-02-01", sample$Date)
-sample$Date <- gsub("2/2/2007", "2007-02-02", sample$Date)
-sample$Date <- as.Date(sample$Date)
-
 png("plot1.png")
 hist(sample$Global_active_power, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
 dev.off()
